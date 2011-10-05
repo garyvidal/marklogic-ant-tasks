@@ -9,6 +9,49 @@ Provides various support for MarkLogic Functionality to use in Build Deployment 
   * corb task dependencies  : corb.jar 
   * xqdoc task dependencies : xqdoc-ml.jar;saxon9he.jar;antlr-2.7.5.jar 
 
+##Using MarkLogic Ant Tasks
+
+The following is a basic project that defines the required information for ant to process your MarkLogic Ant Tasks.
+
+```xml
+ <!--Define ml namespace in project root element-->
+  <project name="ML Ant Tasks" xmlns:ml="http://www.marklogic.com/ant">
+    >
+    <!--Set you the classpath to where your mlant.jar file is located.
+        Include any other dependent jar files required to execute tasks
+        noted in Dependencies section.
+    -->
+    <path id="mlant-classpath">
+		<fileset dir="${lib-dir}">
+			  <include name="xcc.jar" />
+			  <include name="mlant.jar" />
+			  <include name="corb.jar"/>
+			  <include name="saxon9he.jar"/>
+			  <include name="xqdoc-ml.jar"/>
+			  <include name="antlr-2.7.5.jar"/>
+			  <include name="xqdoc-ml.jar"/>
+		</fileset>
+    </path>
+    <!--
+       Setup the type definition and assign classpathref to mlant-classpath
+    -->
+    <typedef 
+       uri="http://www.marklogic.com/ant" 
+       resource="com/marklogic/ant/antlib.xml"
+       classpathref="mlant-classpath"
+    />
+    <!--Optional: Set the property for xccstring used to connect to MarkLogic database-->
+    <property name="xccstring" value="xcc://test:test@localhost:9090/Docs">
+ 
+    <!--Create a target element and use the tasks-->
+    <target name="test-query">
+      <ml:query xccurl="${xccstring}" query="'Hello World'">
+    </target>
+    
+    <!--Have Fun-->
+  </project>
+  
+```
 
 ##ANT Tasks
 <table>
@@ -94,6 +137,9 @@ Example: Deletes files from various documents, directories, or collections
 
 ###&lt;query&gt; Task
 ======
+
+Run AdHoc queries against Marklogic database.  Queries can a single query using @query attribute or multiple queries by passing a `<fileset/>` element.  The fileset files must be main modules in order to be executed.
+
 ####Parameters
 <table>
   <tr><th>Attribute</th><th>Description</th><th>Required</th></tr>
@@ -117,6 +163,7 @@ Example 1:(Simple Query)
 ```
 
 Returns
+
 ```text
 3
 ```
@@ -211,7 +258,8 @@ Description : Spawns a task on the Marklogic Task Server against a given moduleU
   <tr><td>paramset</td><td>Allows parameters to be passed to query or query files.</td><td>No</td></tr>
 </table>
 
-Example 1: Spawns the 'test/test.xqy' passing parameter name foo
+Example 1: Spawns the 'test/test.xqy' passing parameter name foo.
+
 ```xml
     <ml:spawn xccurl="${xccstring}" moduleUri="test/test.xqy">
     	<ml:paramset>
@@ -221,14 +269,17 @@ Example 1: Spawns the 'test/test.xqy' passing parameter name foo
 ```
 
 ###&lt;corb&gt; Task
-Description:  Executes a Corb task.  This is a wrapper for the corb.jar.  The latest version of corb.jar can be found at here: https://github.com/marklogic/corb
 ======
+
+Description:  Executes a Corb task.  This is a wrapper for the corb.jar.  The latest version of corb.jar can be found at here: https://github.com/marklogic/corb
+
+
 ####Parameters
 <table>
   <tr><th>Attribute</th><th>Description</th><th>Required</th></tr>
   <tr><td>xccurl</td><td>XCC Connection string</td><td>Yes</td></tr>
   <tr><td>failonerror</td><td>Determines wether an exception will cause task to fail</td><td>No<br/>default=false</td></tr>
-  <tr><td>module</td><td>Module to execute when processing a given document uri</td><td>Yes</td></tr>
+  <tr><td>module</td><td>location of the file Module to execute when processing a given document uri.  The file must be a path located on the filesystem.  </td><td>Yes</td></tr>
   <tr><td>collection</td><td>collection for uri selection</td><td>No</td></tr>
   <tr><td>urismodule</td><td>Custom uri module to invoked to select uris to process</td><td>No</td></tr>
   <tr><td>moduledb</td><td>Modules database to use when executing the module</td><td>No</td></tr>
@@ -250,7 +301,7 @@ Example:
 
 ###&lt;xqdoc&gt; Task
 ======
-####Parameters
+####Attribute Parameters
 <table>
   <tr><th>Attribute</th><th>Description</th><th>Required</th></tr>
   <tr><td>failonerror</td><td>Determines wether an exception will cause task to fail</td><td>No</td></tr>
@@ -291,9 +342,13 @@ Example:
 
 ###&lt;permissionset&gt; Element
 ======
-####Parameters
+Description: Defines set of permissions to assign using `&lt;load/&gt;` task
+
+####Nested Element Parameters
+
 <table>
-  <tr><th>Attribute</th><th>Description</th><th>Required</th></tr>
+  <tr><th>Element</th><th>Description</th><th>Required</th></tr>
+  <tr><td>permission</td><td>Sequence of permission elements</td><td>Yes</td></tr> 
 </table>
 
 Example:
@@ -309,7 +364,9 @@ Example:
 
 ###&lt;permission&gt; Element
 ======
-####Parameters
+Description: Defines a permission to associate to a document when using &lt;load/&gt; task
+
+####Attribute Parameters
 <table>
   <tr><th>Attribute</th><th>Description</th><th>Required</th></tr>
   <tr><td>role</td><td>Name of role for given permission</td><td>Yes</td></tr>  
@@ -324,9 +381,10 @@ Example:
 
 ###&lt;collectionset&gt; Element
 ======
-####Parameters
+#### Nested Element Parameters
 <table>
-  <tr><th>Attribute</th><th>Description</th><th>Required</th></tr>
+  <tr><th>Element</th><th>Description</th><th>Required</th></tr>
+  <tr><td>collection</td><td>One or more collection elements</td><td>Yes</td></tr>  
 </table>
 Example:
 
@@ -339,7 +397,7 @@ Example:
 
 ###&lt;collection&gt; Element
 ======
-####Parameters
+####Attribute Parameters
 <table>
   <tr><th>Attribute</th><th>Description</th><th>Required</th></tr>
   <tr><td>name</td><td>Name of a collection to add</td><td>Yes</td></tr>  
@@ -351,11 +409,40 @@ Example:
   <ml:collection name="my-collection"/>
 ```
 
+###&lt;options&gt; Element
+======
+####Attribute Parameters
+<table>
+ <tr><th>Attribute</th><th>Description</th><th>Required</th></tr>
+<tr><td>cacheresults</td><td></td><td>No</td></tr> 
+<tr><td>xqueryversion</td><td></td><td>No</td></tr>  
+<tr><td>effectivePointInTime</td><td></td><td>No</td></tr>  
+<tr><td>locale</td><td></td><td>No</td></tr>  
+<tr><td>autoRetryDelayMillis</td><td></td><td>No</td></tr>  
+<tr><td>maxAutoRetry</td><td></td><td>No</td></tr>
+<tr><td>requestName</td><td></td><td>No</td></tr>  
+<tr><td>requestTimeLimit</td><td></td><td>No</td></tr>  
+<tr><td>resultBufferSize</td><td></td><td>No</td></tr>  
+<tr><td>timeoutMillis</td><td></td><td>No</td></tr>
+<tr><td>timezone</td><td></td><td>No</td></tr>  
+</table>
+
+Example:
+
+```xml
+       <!--Documentation not complete-->
+	<ml:options
+	   cacheResults="true"
+	   xqueryversion="1.0-ml"
+	/>
+
+
 ###&lt;paramset&gt; Element
 ======
-####Parameters
+####Nested Element Parameters
 <table>
-  <tr><th>Attribute</th><th>Description</th><th>Required</th></tr>
+  <tr><th>Element</th><th>Description</th><th>Required</th></tr>
+  <tr><td>param</td><td>List of parameters elements to pass to query,invoke or spawn task</td><td>Yes</td></tr>  
 </table>
 Example:
 
@@ -367,9 +454,9 @@ Example:
 
 ###&lt;param&gt; Element
 ======
-Description >
-    Defines a parameter definition.
-####Parameters
+Description: Defines a parameter definition.
+
+####Attribute Parameters
 <table>
   <tr><th>Attribute</th><th>Description</th><th>Required</th></tr>
   <tr><td>name</td><td>Name of variable</td><td>Yes</td></tr>  
