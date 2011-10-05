@@ -1,0 +1,14 @@
+<xqdoc:xqdoc xmlns:xqdoc='http://www.xqdoc.org/1.0'><xqdoc:control><xqdoc:date>Tue Apr 20 23:48:51 EDT 2010</xqdoc:date><xqdoc:version>1.0</xqdoc:version></xqdoc:control><xqdoc:module type='main'><xqdoc:uri>get-ws-updates.xqy</xqdoc:uri><xqdoc:name>get-ws-updates.xqy</xqdoc:name><xqdoc:body xml:space='preserve'>xquery version "1.0-ml";
+
+(: Copyright 2002-2009 Mark Logic Corporation.  All Rights Reserved. :)
+
+(:
+:: Task Scheduled to check HMH web service for updates to standards and intermediaries
+:: for ingest processing.
+::
+:)
+
+import module namespace ingest = "http://www.marklogic.com/hmh/hmh-ingest" at "/lib/hmh-ingest.xqy";
+
+ingest:get-ws-updates()
+</xqdoc:body></xqdoc:module><xqdoc:imports><xqdoc:import><xqdoc:uri>http://www.marklogic.com/hmh/hmh-ingest</xqdoc:uri></xqdoc:import></xqdoc:imports><xqdoc:functions><xqdoc:function><xqdoc:name>xqDoc-main</xqdoc:name><xqdoc:invoked><xqdoc:uri>http://www.marklogic.com/hmh/hmh-ingest</xqdoc:uri><xqdoc:name>get-ws-updates</xqdoc:name></xqdoc:invoked><xqdoc:body xml:space='preserve'>ingest:get-ws-updates()</xqdoc:body></xqdoc:function></xqdoc:functions></xqdoc:xqdoc>

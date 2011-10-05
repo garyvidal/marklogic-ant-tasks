@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<antlib>
+    <taskdef name="load" classname="com.marklogic.ant.taskdefs.Load" />
+    <taskdef name="delete" classname="com.marklogic.ant.taskdefs.Delete" />
+    <taskdef name="invoke" classname="com.marklogic.ant.taskdefs.Invoke"/>
+    <taskdef name="spawn" classname="com.marklogic.ant.taskdefs.Spawn"/>
+    <taskdef name="query" classname="com.marklogic.ant.taskdefs.Query"/>
+    <taskdef name="corb" classname="com.marklogic.ant.taskdefs.Corb"/>
+</antlib>

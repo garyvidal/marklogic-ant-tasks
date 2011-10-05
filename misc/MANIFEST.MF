@@ -1,0 +1,10 @@
+Manifest-Version: 1.0
+Ant-Version: Apache Ant 1.7.0
+Extension-Name: marklogic
+Specification-Title: XCC XQuery Module Loader
+Specification-Version: 0.1
+Specification-Vendor: Mark Logic
+Implementation-Title: XCC XQuery Module Loader
+Implementation-Version: 0.1
+Implementation-Vendor: Mark Logic
+

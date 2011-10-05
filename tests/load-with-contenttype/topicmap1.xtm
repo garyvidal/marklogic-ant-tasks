@@ -1,0 +1,1078 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE topicMap SYSTEM "xtm1.dtd">
+<topicMap xmlns="http://www.topicmaps.org/xtm/1.0/" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <topic id="st-music">
+        <baseName>
+            <baseNameString>Music</baseNameString>
+        </baseName>
+    </topic>
+    <topic id="normalised">
+        <baseName>
+            <baseNameString>Normalised</baseNameString>
+        </baseName>
+    </topic>
+    <topic id="tt-person">
+        <baseName>
+            <baseNameString>Person</baseNameString>
+        </baseName>
+    </topic>
+
+    <topic id="tt-artist">
+        <instanceOf>
+            <topicRef xlink:href="#tt-person"/>
+        </instanceOf>
+        <baseName>
+            <baseNameString>Artist</baseNameString>
+        </baseName>
+    </topic>
+
+    <topic id="tt-musician">
+        <instanceOf>
+            <topicRef xlink:href="#tt-artist"/>
+        </instanceOf>
+        <baseName>
+            <baseNameString>Musician</baseNameString>
+        </baseName>
+    </topic>
+
+    <topic id="tt-vocalist">
+        <instanceOf>
+            <topicRef xlink:href="#tt-musician"/>
+        </instanceOf>
+        <baseName>
+            <baseNameString>Vocalist</baseNameString>
+        </baseName>
+    </topic>
+
+    <topic id="tt-guitarist">
+        <instanceOf>
+            <topicRef xlink:href="#tt-musician"/>
+        </instanceOf>
+        <baseName>
+            <baseNameString>Guitarist</baseNameString>
+        </baseName>
+    </topic>
+
+    <topic id="tt-bassist">
+        <instanceOf>
+            <topicRef xlink:href="#tt-musician"/>
+        </instanceOf>
+        <baseName>
+            <baseNameString>Bassist</baseNameString>
+        </baseName>
+    </topic>
+
+    <topic id="tt-drummer">
+        <instanceOf>
+            <topicRef xlink:href="#tt-musician"/>
+        </instanceOf>
+        <baseName>
+            <baseNameString>Drummer</baseNameString>
+        </baseName>
+    </topic>
+
+    <topic id="tt-band">
+        <instanceOf>
+            <topicRef xlink:href="#tt-music"/>
+        </instanceOf>
+        <baseName>
+            <baseNameString>Band</baseNameString>
+        </baseName>
+    </topic>
+
+    <topic id="tt-geography">
+        <baseName>
+            <baseNameString>Geography</baseNameString>
+        </baseName>
+    </topic>
+    <topic id="tt-country">
+        <instanceOf>
+            <topicRef xlink:href="#tt-geography"/>
+
+        </instanceOf>
+        <baseName>
+            <baseNameString>Country</baseNameString>
+        </baseName>
+    </topic>
+    <topic id="tt-city">
+        <instanceOf>
+            <topicRef xlink:href="#tt-geography"/>
+
+        </instanceOf>
+        <baseName>
+            <baseNameString>City</baseNameString>
+        </baseName>
+    </topic>
+    <topic id="tt-music">
+        <baseName>
+            <baseNameString>Music</baseNameString>
+
+        </baseName>
+    </topic>
+    <topic id="tt-pop-music">
+        <instanceOf>
+            <topicRef xlink:href="#tt-music"/>
+        </instanceOf>
+        <baseName>
+            <baseNameString>Pop music</baseNameString>
+
+        </baseName>
+    </topic>
+    <topic id="tt-rock">
+        <instanceOf>
+            <topicRef xlink:href="#tt-music"/>
+        </instanceOf>
+        <baseName>
+            <baseNameString>Rock 'n roll</baseNameString>
+
+        </baseName>
+    </topic>
+    <topic id="tt-disc">
+        <baseName>
+            <baseNameString>Disc</baseNameString>
+        </baseName>
+    </topic>
+    <topic id="tt-punk">
+
+        <instanceOf>
+            <topicRef xlink:href="#tt-music"/>
+        </instanceOf>
+        <baseName>
+            <baseNameString>Punk Rock</baseNameString>
+            <variant>
+                <parameters>
+                    <topicRef xlink:href="http://www.topicmaps.org/xtm/1.0/#psi-sort"/>
+
+                </parameters>
+                <variantName>
+                    <resourceData id="Nce-Nd1">punk rock</resourceData>
+                </variantName>
+            </variant>
+            <variant>
+                <parameters>
+                    <topicRef xlink:href="http://www.topicmaps.org/xtm/1.0/#psi-sort"/>
+
+                </parameters>
+                <variantName>
+                    <resourceData id="Nce-Nd6">Punk Rock</resourceData>
+                </variantName>
+            </variant>
+        </baseName>
+    </topic>
+    <topic id="tt-dub">
+
+        <instanceOf>
+            <topicRef xlink:href="#tt-music"/>
+        </instanceOf>
+        <baseName>
+            <baseNameString>Dub</baseNameString>
+            <variant>
+                <parameters>
+                    <topicRef xlink:href="http://www.topicmaps.org/xtm/1.0/#psi-sort"/>
+
+                </parameters>
+                <variantName>
+                    <resourceData id="Ne3-Ne6">dub</resourceData>
+                </variantName>
+            </variant>
+            <variant>
+                <parameters>
+                    <topicRef xlink:href="http://www.topicmaps.org/xtm/1.0/#psi-sort"/>
+
+                </parameters>
+                <variantName>
+                    <resourceData id="Ne3-Neb">Dub</resourceData>
+                </variantName>
+            </variant>
+        </baseName>
+    </topic>
+    <topic id="tt-reggae">
+
+        <instanceOf>
+            <topicRef xlink:href="#tt-music"/>
+        </instanceOf>
+        <baseName>
+            <baseNameString>Reggae</baseNameString>
+        </baseName>
+    </topic>
+    <topic id="tt-song">
+
+        <baseName>
+            <baseNameString>Song</baseNameString>
+        </baseName>
+    </topic>
+    <topic id="t-the-clash">
+        <instanceOf>
+            <topicRef xlink:href="#tt-band"/>
+        </instanceOf>
+
+        <baseName>
+            <baseNameString>The Clash</baseNameString>
+            <variant>
+                <parameters>
+                    <topicRef xlink:href="http://www.topicmaps.org/xtm/1.0/#psi-sort"/>
+                </parameters>
+                <variantName>
+                    <resourceData id="N112-N115">clash the</resourceData>
+
+                </variantName>
+            </variant>
+            <variant>
+                <parameters>
+                    <topicRef xlink:href="http://www.topicmaps.org/xtm/1.0/#psi-sort"/>
+                </parameters>
+                <variantName>
+                    <resourceData id="N112-N11a">Clash, The</resourceData>
+
+                </variantName>
+            </variant>
+        </baseName>
+    </topic>
+    <topic id="t-mick-jones">
+        <instanceOf>
+            <topicRef xlink:href="#tt-person"/>
+        </instanceOf>
+        <instanceOf>
+
+            <topicRef xlink:href="#tt-musician"/>
+        </instanceOf>
+        <baseName>
+            <baseNameString>Mick Jones</baseNameString>
+            <variant>
+                <parameters>
+                    <topicRef xlink:href="http://www.topicmaps.org/xtm/1.0/#psi-sort"/>
+                </parameters>
+
+                <variantName>
+                    <resourceData id="N129-N12f">Jones, Mick</resourceData>
+                </variantName>
+            </variant>
+            <variant>
+                <parameters>
+                    <topicRef xlink:href="http://www.topicmaps.org/xtm/1.0/#psi-sort"/>
+                </parameters>
+
+                <variantName>
+                    <resourceData id="N129-N132">jones mick</resourceData>
+                </variantName>
+            </variant>
+        </baseName>
+        <baseName>
+            <baseNameString>M. Jones</baseNameString>
+            <variant>
+
+                <parameters>
+                    <topicRef xlink:href="http://www.topicmaps.org/xtm/1.0/#psi-sort"/>
+                </parameters>
+                <variantName>
+                    <resourceData id="N12c-N12f">Jones, Mick</resourceData>
+                </variantName>
+            </variant>
+            <variant>
+
+                <parameters>
+                    <topicRef xlink:href="http://www.topicmaps.org/xtm/1.0/#psi-sort"/>
+                </parameters>
+                <variantName>
+                    <resourceData id="N12c-N132">jones mick</resourceData>
+                </variantName>
+            </variant>
+        </baseName>
+
+    </topic>
+    <topic id="t-joe-strummer">
+        <instanceOf>
+            <topicRef xlink:href="#tt-person"/>
+        </instanceOf>
+        <instanceOf>
+            <topicRef xlink:href="#tt-musician"/>
+        </instanceOf>
+        <baseName>
+
+            <baseNameString>Joe Strummer</baseNameString>
+            <variant>
+                <parameters>
+                    <topicRef xlink:href="http://www.topicmaps.org/xtm/1.0/#psi-display"/>
+                </parameters>
+                <variantName>
+                    <resourceData id="N141-N14d">Joe Strummer</resourceData>
+                </variantName>
+
+            </variant>
+            <variant>
+                <parameters>
+                    <topicRef xlink:href="http://www.topicmaps.org/xtm/1.0/#psi-sort"/>
+                </parameters>
+                <variantName>
+                    <resourceData id="N141-N150">Strummer, Joe</resourceData>
+                </variantName>
+
+            </variant>
+            <variant>
+                <parameters>
+                    <topicRef xlink:href="http://www.topicmaps.org/xtm/1.0/#psi-sort"/>
+                </parameters>
+                <variantName>
+                    <resourceData id="N141-N153">strummer joe</resourceData>
+                </variantName>
+
+            </variant>
+        </baseName>
+        <baseName>
+            <baseNameString>J. Strummer</baseNameString>
+            <variant>
+                <parameters>
+                    <topicRef xlink:href="http://www.topicmaps.org/xtm/1.0/#psi-display"/>
+                </parameters>
+
+                <variantName>
+                    <resourceData id="N144-N14d">Joe Strummer</resourceData>
+                </variantName>
+            </variant>
+            <variant>
+                <parameters>
+                    <topicRef xlink:href="http://www.topicmaps.org/xtm/1.0/#psi-sort"/>
+                </parameters>
+
+                <variantName>
+                    <resourceData id="N144-N150">Strummer, Joe</resourceData>
+                </variantName>
+            </variant>
+            <variant>
+                <parameters>
+                    <topicRef xlink:href="http://www.topicmaps.org/xtm/1.0/#psi-sort"/>
+                </parameters>
+
+                <variantName>
+                    <resourceData id="N144-N153">strummer joe</resourceData>
+                </variantName>
+            </variant>
+        </baseName>
+        <baseName>
+            <baseNameString>John Graham Mellor</baseNameString>
+            <variant>
+
+                <parameters>
+                    <topicRef xlink:href="http://www.topicmaps.org/xtm/1.0/#psi-display"/>
+                </parameters>
+                <variantName>
+                    <resourceData id="N147-N14d">Joe Strummer</resourceData>
+                </variantName>
+            </variant>
+            <variant>
+
+                <parameters>
+                    <topicRef xlink:href="http://www.topicmaps.org/xtm/1.0/#psi-sort"/>
+                </parameters>
+                <variantName>
+                    <resourceData id="N147-N150">Strummer, Joe</resourceData>
+                </variantName>
+            </variant>
+            <variant>
+
+                <parameters>
+                    <topicRef xlink:href="http://www.topicmaps.org/xtm/1.0/#psi-sort"/>
+                </parameters>
+                <variantName>
+                    <resourceData id="N147-N153">strummer joe</resourceData>
+                </variantName>
+            </variant>
+        </baseName>
+
+        <baseName>
+            <baseNameString>J. Mellor</baseNameString>
+            <variant>
+                <parameters>
+                    <topicRef xlink:href="http://www.topicmaps.org/xtm/1.0/#psi-display"/>
+                </parameters>
+                <variantName>
+                    <resourceData id="N14a-N14d">Joe Strummer</resourceData>
+
+                </variantName>
+            </variant>
+            <variant>
+                <parameters>
+                    <topicRef xlink:href="http://www.topicmaps.org/xtm/1.0/#psi-sort"/>
+                </parameters>
+                <variantName>
+                    <resourceData id="N14a-N150">Strummer, Joe</resourceData>
+
+                </variantName>
+            </variant>
+            <variant>
+                <parameters>
+                    <topicRef xlink:href="http://www.topicmaps.org/xtm/1.0/#psi-sort"/>
+                </parameters>
+                <variantName>
+                    <resourceData id="N14a-N153">strummer joe</resourceData>
+
+                </variantName>
+            </variant>
+        </baseName>
+    </topic>
+    <topic id="t-paul-simonon">
+        <instanceOf>
+            <topicRef xlink:href="#tt-person"/>
+        </instanceOf>
+        <instanceOf>
+
+            <topicRef xlink:href="#tt-musician"/>
+        </instanceOf>
+        <baseName>
+            <baseNameString>Paul Simonon</baseNameString>
+            <variant>
+                <parameters>
+                    <topicRef xlink:href="http://www.topicmaps.org/xtm/1.0/#psi-sort"/>
+                </parameters>
+
+                <variantName>
+                    <resourceData id="N162-N168">Simonon, Paul</resourceData>
+                </variantName>
+            </variant>
+            <variant>
+                <parameters>
+                    <topicRef xlink:href="http://www.topicmaps.org/xtm/1.0/#psi-sort"/>
+                </parameters>
+
+                <variantName>
+                    <resourceData id="N162-N16b">simonon, paul</resourceData>
+                </variantName>
+            </variant>
+        </baseName>
+        <baseName>
+            <baseNameString>P. Simonon</baseNameString>
+            <variant>
+
+                <parameters>
+                    <topicRef xlink:href="http://www.topicmaps.org/xtm/1.0/#psi-sort"/>
+                </parameters>
+                <variantName>
+                    <resourceData id="N165-N168">Simonon, Paul</resourceData>
+                </variantName>
+            </variant>
+            <variant>
+
+                <parameters>
+                    <topicRef xlink:href="http://www.topicmaps.org/xtm/1.0/#psi-sort"/>
+                </parameters>
+                <variantName>
+                    <resourceData id="N165-N16b">simonon, paul</resourceData>
+                </variantName>
+            </variant>
+        </baseName>
+
+    </topic>
+    <topic id="t-tory-crimes">
+        <instanceOf>
+            <topicRef xlink:href="#tt-person"/>
+        </instanceOf>
+        <instanceOf>
+            <topicRef xlink:href="#tt-musician"/>
+        </instanceOf>
+        <baseName>
+
+            <baseNameString>Tory Crimes</baseNameString>
+            <variant>
+                <parameters>
+                    <topicRef xlink:href="http://www.topicmaps.org/xtm/1.0/#psi-sort"/>
+                </parameters>
+                <variantName>
+                    <resourceData id="N17a-N180">Crimes, Tory</resourceData>
+                </variantName>
+
+            </variant>
+            <variant>
+                <parameters>
+                    <topicRef xlink:href="http://www.topicmaps.org/xtm/1.0/#psi-sort"/>
+                </parameters>
+                <variantName>
+                    <resourceData id="N17a-N183">crimes tory</resourceData>
+                </variantName>
+
+            </variant>
+        </baseName>
+        <baseName>
+            <baseNameString>T. Crimes</baseNameString>
+            <variant>
+                <parameters>
+                    <topicRef xlink:href="http://www.topicmaps.org/xtm/1.0/#psi-sort"/>
+                </parameters>
+
+                <variantName>
+                    <resourceData id="N17d-N180">Crimes, Tory</resourceData>
+                </variantName>
+            </variant>
+            <variant>
+                <parameters>
+                    <topicRef xlink:href="http://www.topicmaps.org/xtm/1.0/#psi-sort"/>
+                </parameters>
+
+                <variantName>
+                    <resourceData id="N17d-N183">crimes tory</resourceData>
+                </variantName>
+            </variant>
+        </baseName>
+    </topic>
+    <topic id="t-nicky-headon">
+        <instanceOf>
+
+            <topicRef xlink:href="#tt-person"/>
+        </instanceOf>
+        <instanceOf>
+            <topicRef xlink:href="#tt-musician"/>
+        </instanceOf>
+        <baseName>
+            <baseNameString>Nicky Headon</baseNameString>
+            <variant>
+
+                <parameters>
+                    <topicRef xlink:href="http://www.topicmaps.org/xtm/1.0/#psi-sort"/>
+                </parameters>
+                <variantName>
+                    <resourceData id="N192-N198">Headon, Nicky</resourceData>
+                </variantName>
+            </variant>
+            <variant>
+
+                <parameters>
+                    <topicRef xlink:href="http://www.topicmaps.org/xtm/1.0/#psi-sort"/>
+                </parameters>
+                <variantName>
+                    <resourceData id="N192-N19b">headon nicky</resourceData>
+                </variantName>
+            </variant>
+        </baseName>
+
+        <baseName>
+            <baseNameString>N. Headon</baseNameString>
+            <variant>
+                <parameters>
+                    <topicRef xlink:href="http://www.topicmaps.org/xtm/1.0/#psi-sort"/>
+                </parameters>
+                <variantName>
+                    <resourceData id="N195-N198">Headon, Nicky</resourceData>
+
+                </variantName>
+            </variant>
+            <variant>
+                <parameters>
+                    <topicRef xlink:href="http://www.topicmaps.org/xtm/1.0/#psi-sort"/>
+                </parameters>
+                <variantName>
+                    <resourceData id="N195-N19b">headon nicky</resourceData>
+
+                </variantName>
+            </variant>
+        </baseName>
+    </topic>
+    <topic id="t-disc-the-clash">
+        <instanceOf>
+            <topicRef xlink:href="#tt-disc"/>
+        </instanceOf>
+        <baseName>
+
+            <baseNameString>The Clash</baseNameString>
+            <variant>
+                <parameters>
+                    <topicRef xlink:href="http://www.topicmaps.org/xtm/1.0/#psi-sort"/>
+                </parameters>
+                <variantName>
+                    <resourceData id="N1ac-N1af">The Clash</resourceData>
+                </variantName>
+
+            </variant>
+            <variant>
+                <parameters>
+                    <topicRef xlink:href="http://www.topicmaps.org/xtm/1.0/#psi-sort"/>
+                </parameters>
+                <variantName>
+                    <resourceData id="N1ac-N1b2">the clash</resourceData>
+                </variantName>
+
+            </variant>
+        </baseName>
+        <occurrence>
+            <instanceOf>
+                <topicRef xlink:href="#Tracklist"/>
+            </instanceOf>
+            <resourceRef xlink:href="discography.htm#EK36060"/>
+        </occurrence>
+        <occurrence>
+
+            <instanceOf>
+                <topicRef xlink:href="#CoverArt"/>
+            </instanceOf>
+            <resourceRef xlink:href="clash.gif"/>
+        </occurrence>
+    </topic>
+    <topic id="t-disc-combat-rock">
+        <instanceOf>
+            <topicRef xlink:href="#tt-disc"/>
+
+        </instanceOf>
+        <baseName>
+            <baseNameString>Combat Rock</baseNameString>
+            <variant>
+                <parameters>
+                    <topicRef xlink:href="http://www.topicmaps.org/xtm/1.0/#psi-sort"/>
+                </parameters>
+                <variantName>
+
+                    <resourceData id="N1d5-N1d8">Combat Rock</resourceData>
+                </variantName>
+            </variant>
+            <variant>
+                <parameters>
+                    <topicRef xlink:href="http://www.topicmaps.org/xtm/1.0/#psi-sort"/>
+                </parameters>
+                <variantName>
+
+                    <resourceData id="N1d5-N1db">combat rock</resourceData>
+                </variantName>
+            </variant>
+        </baseName>
+        <occurrence>
+            <instanceOf>
+                <topicRef xlink:href="#CoverArt"/>
+            </instanceOf>
+
+            <resourceRef xlink:href="combat.gif"/>
+        </occurrence>
+        <occurrence>
+            <instanceOf>
+                <topicRef xlink:href="#Excerpt"/>
+            </instanceOf>
+            <resourceRef xlink:href="should.ram"/>
+        </occurrence>
+    </topic>
+
+    <topic id="t-lee-perry">
+        <instanceOf>
+            <topicRef xlink:href="#tt-musician"/>
+        </instanceOf>
+        <instanceOf>
+            <topicRef xlink:href="#tt-person"/>
+        </instanceOf>
+        <baseName>
+            <baseNameString>Lee 'Scratch' Perry</baseNameString>
+
+            <variant>
+                <parameters>
+                    <topicRef xlink:href="http://www.topicmaps.org/xtm/1.0/#psi-sort"/>
+                </parameters>
+                <variantName>
+                    <resourceData id="N200-N206">Perry, Lee</resourceData>
+                </variantName>
+            </variant>
+
+            <variant>
+                <parameters>
+                    <topicRef xlink:href="http://www.topicmaps.org/xtm/1.0/#psi-sort"/>
+                </parameters>
+                <variantName>
+                    <resourceData id="N200-N209">Perry, Scratch</resourceData>
+                </variantName>
+            </variant>
+
+            <variant>
+                <parameters>
+                    <topicRef xlink:href="http://www.topicmaps.org/xtm/1.0/#psi-sort"/>
+                </parameters>
+                <variantName>
+                    <resourceData id="N200-N20c">perry lee</resourceData>
+                </variantName>
+            </variant>
+
+            <variant>
+                <parameters>
+                    <topicRef xlink:href="http://www.topicmaps.org/xtm/1.0/#psi-sort"/>
+                </parameters>
+                <variantName>
+                    <resourceData id="N200-N211">perry scratch</resourceData>
+                </variantName>
+            </variant>
+
+        </baseName>
+        <baseName>
+            <baseNameString>Scratch Perry</baseNameString>
+            <variant>
+                <parameters>
+                    <topicRef xlink:href="http://www.topicmaps.org/xtm/1.0/#psi-sort"/>
+                </parameters>
+                <variantName>
+
+                    <resourceData id="N203-N206">Perry, Lee</resourceData>
+                </variantName>
+            </variant>
+            <variant>
+                <parameters>
+                    <topicRef xlink:href="http://www.topicmaps.org/xtm/1.0/#psi-sort"/>
+                </parameters>
+                <variantName>
+
+                    <resourceData id="N203-N209">Perry, Scratch</resourceData>
+                </variantName>
+            </variant>
+            <variant>
+                <parameters>
+                    <topicRef xlink:href="http://www.topicmaps.org/xtm/1.0/#psi-sort"/>
+                </parameters>
+                <variantName>
+
+                    <resourceData id="N203-N20c">perry lee</resourceData>
+                </variantName>
+            </variant>
+            <variant>
+                <parameters>
+                    <topicRef xlink:href="http://www.topicmaps.org/xtm/1.0/#psi-sort"/>
+                </parameters>
+                <variantName>
+
+                    <resourceData id="N203-N211">perry scratch</resourceData>
+                </variantName>
+            </variant>
+        </baseName>
+    </topic>
+    <topic id="t-aston-barrett">
+        <instanceOf>
+            <topicRef xlink:href="#tt-musician"/>
+
+        </instanceOf>
+        <instanceOf>
+            <topicRef xlink:href="#tt-person"/>
+        </instanceOf>
+        <baseName>
+            <baseNameString>Aston "Family Man" Barrett</baseNameString>
+            <variant>
+                <parameters>
+
+                    <topicRef xlink:href="http://www.topicmaps.org/xtm/1.0/#psi-sort"/>
+                </parameters>
+                <variantName>
+                    <resourceData id="N222-N225">Barrent, Aston</resourceData>
+                </variantName>
+            </variant>
+        </baseName>
+    </topic>
+
+    <topic id="t-carlton-barrett">
+        <instanceOf>
+            <topicRef xlink:href="#tt-musician"/>
+        </instanceOf>
+        <instanceOf>
+            <topicRef xlink:href="#tt-person"/>
+        </instanceOf>
+        <baseName>
+            <baseNameString>Carlton Barrett</baseNameString>
+
+            <variant>
+                <parameters>
+                    <topicRef xlink:href="http://www.topicmaps.org/xtm/1.0/#psi-sort"/>
+                </parameters>
+                <variantName>
+                    <resourceData id="N234-N237">Barrett, Carlton</resourceData>
+                </variantName>
+            </variant>
+
+        </baseName>
+    </topic>
+    <topic id="id-junior-murvin">
+        <instanceOf>
+            <topicRef xlink:href="#tt-musician"/>
+        </instanceOf>
+        <instanceOf>
+            <topicRef xlink:href="#tt-person"/>
+        </instanceOf>
+
+        <baseName>
+            <baseNameString>Junior Murvin</baseNameString>
+            <variant>
+                <parameters>
+                    <topicRef xlink:href="http://www.topicmaps.org/xtm/1.0/#psi-sort"/>
+                </parameters>
+                <variantName>
+                    <resourceData id="N246-N249">Murvin, Junior</resourceData>
+
+                </variantName>
+            </variant>
+        </baseName>
+    </topic>
+    <topic id="t-winston-wright">
+        <instanceOf>
+            <topicRef xlink:href="#tt-musician"/>
+        </instanceOf>
+        <instanceOf>
+
+            <topicRef xlink:href="#tt-person"/>
+        </instanceOf>
+        <baseName>
+            <baseNameString>Winston Wright</baseNameString>
+            <variant>
+                <parameters>
+                    <topicRef xlink:href="http://www.topicmaps.org/xtm/1.0/#psi-sort"/>
+                </parameters>
+
+                <variantName>
+                    <resourceData id="N258-N25b">Wright, Winston</resourceData>
+                </variantName>
+            </variant>
+        </baseName>
+    </topic>
+    <topic id="id-ansel-collins">
+        <instanceOf>
+
+            <topicRef xlink:href="#tt-person"/>
+        </instanceOf>
+        <instanceOf>
+            <topicRef xlink:href="#tt-musician"/>
+        </instanceOf>
+        <baseName>
+            <baseNameString>Ansel Collins</baseNameString>
+            <variant>
+
+                <parameters>
+                    <topicRef xlink:href="http://www.topicmaps.org/xtm/1.0/#psi-sort"/>
+                </parameters>
+                <variantName>
+                    <resourceData id="N26a-N26d">Collins, Ansel</resourceData>
+                </variantName>
+            </variant>
+        </baseName>
+
+    </topic>
+    <topic id="t-england">
+        <instanceOf>
+            <topicRef xlink:href="#tt-country"/>
+        </instanceOf>
+        <baseName>
+            <baseNameString>England</baseNameString>
+        </baseName>
+
+    </topic>
+    <topic id="t-turkey">
+        <instanceOf>
+            <topicRef xlink:href="#tt-country"/>
+        </instanceOf>
+        <baseName>
+            <baseNameString>Turkey</baseNameString>
+        </baseName>
+
+    </topic>
+    <topic id="t-ankara">
+        <instanceOf>
+            <topicRef xlink:href="#tt-city"/>
+        </instanceOf>
+        <baseName>
+            <baseNameString>Ankara</baseNameString>
+        </baseName>
+
+    </topic>
+    <topic id="t-london">
+        <instanceOf>
+            <topicRef xlink:href="#tt-city"/>
+        </instanceOf>
+        <baseName>
+            <baseNameString>London</baseNameString>
+        </baseName>
+
+    </topic>
+    <topic id="t-bromley">
+        <instanceOf>
+            <topicRef xlink:href="#tt-city"/>
+        </instanceOf>
+        <baseName>
+            <baseNameString>Bromley</baseNameString>
+        </baseName>
+
+    </topic>
+    <topic id="at-member-of">
+        <baseName>
+            <baseNameString>Member of</baseNameString>
+        </baseName>
+    </topic>
+    <topic id="at-played-instrument-in">
+        <baseName>
+
+            <baseNameString>Played instrument</baseNameString>
+        </baseName>
+    </topic>
+    <topic id="at-born-in">
+        <baseName>
+            <baseNameString>Born in</baseNameString>
+        </baseName>
+    </topic>
+
+    <topic id="at-recorded">
+        <baseName>
+            <baseNameString>Recorded</baseNameString>
+        </baseName>
+    </topic>
+    <association id="N2dd">
+        <instanceOf>
+            <topicRef xlink:href="#at-member-of"/>
+
+        </instanceOf>
+        <scope>
+            <topicRef xlink:href="#st-music"/>
+        </scope>
+        <member>
+            <roleSpec>
+                <topicRef xlink:href="#tt-band"/>
+            </roleSpec>
+            <topicRef xlink:href="#t-the-clash"/>
+
+        </member>
+        <member>
+            <roleSpec>
+                <topicRef xlink:href="#tt-vocalist"/>
+            </roleSpec>
+            <topicRef xlink:href="#t-mick-jones"/>
+            <topicRef xlink:href="#t-joe-strummer"/>
+        </member>
+        <member>
+
+            <roleSpec>
+                <topicRef xlink:href="#tt-guitarist"/>
+            </roleSpec>
+            <topicRef xlink:href="#t-mick-jones"/>
+            <topicRef xlink:href="#t-joe-strummer"/>
+        </member>
+        <member>
+            <roleSpec>
+                <topicRef xlink:href="#tt-bassist"/>
+
+            </roleSpec>
+            <topicRef xlink:href="#t-paul-simonon"/>
+        </member>
+        <member>
+            <roleSpec>
+                <topicRef xlink:href="#tt-drummer"/>
+            </roleSpec>
+            <topicRef xlink:href="#t-tory-crimes"/>
+        </member>
+
+        <member>
+            <roleSpec>
+                <topicRef xlink:href="#tt-drummer"/>
+            </roleSpec>
+            <topicRef xlink:href="#t-nicky-headon"/>
+        </member>
+    </association>
+    <association id="N304">
+        <instanceOf>
+
+            <topicRef xlink:href="#at-recorded"/>
+        </instanceOf>
+        <scope>
+            <topicRef xlink:href="#st-music"/>
+        </scope>
+        <member>
+            <roleSpec>
+                <topicRef xlink:href="#tt-band"/>
+            </roleSpec>
+
+            <topicRef xlink:href="#t-the-clash"/>
+        </member>
+        <member>
+            <roleSpec>
+                <topicRef xlink:href="#tt-disc"/>
+            </roleSpec>
+            <topicRef xlink:href="#t-disc-the-clash"/>
+        </member>
+        <member>
+
+            <roleSpec>
+                <topicRef xlink:href="#tt-disc"/>
+            </roleSpec>
+            <topicRef xlink:href="#t-disc-combat-rock"/>
+        </member>
+    </association>
+    <association id="N320">
+        <instanceOf>
+            <topicRef xlink:href="#at-born-in"/>
+
+        </instanceOf>
+        <member>
+            <roleSpec>
+                <topicRef xlink:href="#tt-city"/>
+            </roleSpec>
+            <topicRef xlink:href="#t-ankara"/>
+        </member>
+        <member>
+            <roleSpec>
+
+                <topicRef xlink:href="#tt-person"/>
+            </roleSpec>
+            <topicRef xlink:href="#t-joe-strummer"/>
+        </member>
+    </association>
+    <association id="N335">
+        <instanceOf>
+            <topicRef xlink:href="#at-born-in"/>
+        </instanceOf>
+
+        <member>
+            <roleSpec>
+                <topicRef xlink:href="#tt-city"/>
+            </roleSpec>
+            <topicRef xlink:href="#t-london"/>
+        </member>
+        <member>
+            <roleSpec>
+                <topicRef xlink:href="#tt-person"/>
+
+            </roleSpec>
+            <topicRef xlink:href="#t-mick-jones"/>
+            <topicRef xlink:href="#t-paul-simonon"/>
+        </member>
+    </association>
+    <association id="N34a">
+        <instanceOf>
+            <topicRef xlink:href="#at-born-in"/>
+        </instanceOf>
+
+        <member>
+            <roleSpec>
+                <topicRef xlink:href="#tt-city"/>
+            </roleSpec>
+            <topicRef xlink:href="#t-bromley"/>
+        </member>
+        <member>
+            <roleSpec>
+                <topicRef xlink:href="#tt-person"/>
+
+            </roleSpec>
+            <topicRef xlink:href="#t-nicky-headon"/>
+        </member>
+    </association>
+    <association id="N35f">
+        <instanceOf>
+            <topicRef xlink:href="#at-recorded"/>
+        </instanceOf>
+        <member>
+
+            <roleSpec>
+                <topicRef xlink:href="#tt-band"/>
+            </roleSpec>
+            <topicRef xlink:href="#t-the-clash"/>
+        </member>
+        <member>
+            <roleSpec>
+                <topicRef xlink:href="#tt-track"/>
+            </roleSpec>
+
+            <topicRef xlink:href="#t-i-fought-the-law"/>
+        </member>
+    </association>
+    <topic id="ft-website-rating">
+        <baseName>
+            <baseNameString>Rating</baseNameString>
+        </baseName>
+    </topic>
+
+    <topic id="fv-fierce">
+        <baseName>
+            <baseNameString>Fierce</baseNameString>
+        </baseName>
+    </topic>
+</topicMap>

@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project 
+    name="anttest" 
+    default="test-task" 
+    basedir="."
+    xmlns:ml="antlib:com.marklogic.ant"
+    >
+    
+    <property name="xccstring" value="xcc://admin:admin@localhost:9001/playground" />
+    
+    <target name="test-task">
+        <ml:load xccurl="${xccstring}">
+            <ml:docset destdir="/test-dir/">
+                <ml:permissionset>
+                    <ml:permission role="nobody" permission="execute" />
+                    <ml:permission role="nobody" permission="insert" />
+                    <ml:permission role="nobody" permission="read" />
+                    <ml:permission role="nobody" permission="update" />
+                </ml:permissionset>
+            	
+                <ml:collectionset>
+                    <ml:collection name="collection1" />
+                    <ml:collection name="collection2" />
+                </ml:collectionset>
+                <fileset dir="../src" includes="**/*" />                
+            </ml:docset>
+        </ml:load>
+    	<ml:query xccurl="${xccstring}" output="output.txt"
+    		query="1+1">
+    		<fileset diqr="../src" includes="**/*.xqy" /> 
+    	</ml:query>
+    	<ml:invoke xccurl="${xccstring}" module="test.xqy">
+    		<ml:paramset>
+    			<ml:param name="hello" ns="" type="string" value="hello"/>
+    		</ml:paramset>
+    	</ml:invoke>
+    	<ml:spawn xccurl="${xccstring}">
+    		<ml:paramset>
+    	    	<ml:param name="hello" ns="" type="string" value="hello"/>
+    	    </ml:paramset>
+        </ml:spawn>
+        <ml:delete xccurl="${xccstring}"
+            documents="/path/to/doc1.xml,/path/to/doc2.xml"
+            directories="/dir1/,/dir2/"
+            collections="collection1,collection2"
+            query="cts:uris('',(), cts:directory-query('/dir/', 'infinity'))"
+        />
+    </target>
+    
+</project>

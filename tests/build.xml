@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project 
+    name="Ant Task Tests" 
+    default="test-task" 
+    basedir="."
+    xmlns:ml="http://www.marklogic.com/ant"
+    >
+    
+	<property name="lib-dir" value="../lib/" />
+	
+	<path id="mlant-classpath">
+		<fileset dir="${lib-dir}">
+			  <include name="xcc.jar" />
+			  <include name="mlant.jar" />
+			  <include name="corb.jar"/>
+			  <include name="saxon9he.jar"/>
+			  <include name="xqdoc-ml.jar"/>
+			  <include name="antlr-2.7.5.jar"/>
+			  <include name="xqdoc-ml.jar"/>
+		</fileset>
+    </path>
+	<typedef uri="http://www.marklogic.com/ant" 
+		resource="com/marklogic/ant/antlib.xml" classpathref="mlant-classpath"/>
+	
+    <property name="xccstring" value="xcc://admin:admin@localhost:8070/Documents" />
+    
+    <target name="test-task">
+        <ml:load xccurl="${xccstring}">
+            <ml:docset destdir="/test-dir/">
+                <ml:permissionset>
+                    <ml:permission role="nobody" permission="execute" />
+                    <ml:permission role="nobody" permission="insert" />
+                    <ml:permission role="nobody" permission="read" />
+                    <ml:permission role="nobody" permission="update" />
+                </ml:permissionset>
+                <ml:collectionset>
+                    <ml:collection name="collection1" />
+                    <ml:collection name="collection2" />
+                </ml:collectionset>
+                <fileset dir="../src" includes="**/*" />                
+            </ml:docset>
+        </ml:load>
+    	<ml:query xccurl="${xccstring}"
+    		query="xquery version '1.0-ml'; 1+1" 
+    		output="${basedir}/output.txt"
+    		appendoutput="true">
+    		<fileset dir="${basedir}" includes="*.xqy" excludes="simple2.xqy" /> 
+    	</ml:query>
+    	<ml:invoke xccurl="${xccstring}" moduleUri="test/test.xqy">
+    		<ml:paramset>
+    			<ml:param name="foo" ns="" type="string" value="Douglass">
+    			</ml:param>
+    		</ml:paramset>
+    	</ml:invoke>
+    	<ml:load xccurl="${xccstring}">
+    		<ml:docset destdir="/">
+    			<fileset dir="./corb" includes="*.xqy"/>
+    		</ml:docset>
+    	</ml:load>
+        <!--<ml:delete xccurl="${xccstring}"
+            query="cts:uris('')"
+        />-->
+    	<!--
+	    	<ml:delete xccurl="${xccstring}"
+    	    	documents="/path/to/doc1.xml,/path/to/doc2.xml"
+       		    directories="/dir1/,/dir2/"
+            	collections="collection1,collection2"
+                failonerror="false"
+        	/>  -->
+ 
+
+    </target>
+    <target name="test-corb">
+		<ml:corb xccurl="${xccstring}" 
+			collection="" 
+			module="${basedir}/tests/corb/uri-logger.xqy"
+			moduledb="Documents"
+			moduleroot="/"
+			threads="4"
+			install="false" 
+		/>
+	</target>
+	<target name="test-load-contenttype">
+	  <ml:load xccurl="${xccstring}" contenttype="xml">
+	  	  <ml:docset destdir="/topicmaps/">
+	  	    <fileset file="${basedir}/topicmap1.xtm"/> 
+            <ml:permissionset>
+                <ml:permission role="nobody" permission="execute" />
+                <ml:permission role="nobody" permission="insert" />
+                <ml:permission role="nobody" permission="read" />
+                <ml:permission role="nobody" permission="update" />
+            </ml:permissionset>
+            <ml:collectionset>
+                <ml:collection name="collection1" />
+                <ml:collection name="collection2" />
+            </ml:collectionset>
+	  	  </ml:docset>
+	  </ml:load>
+	</target>
+	<target name="test-query-fileset">
+		<ml:query xccurl="${xccstring}" output="${basedir}/output.txt">
+		   <fileset file="${basedir}/simple*.xqy">
+		   </fileset>
+	    </ml:query>
+	</target>
+	<target name="test-query-fileset-with-parameter">
+		<echo>Testing using fileset with external parameters</echo>
+		<ml:query xccurl="${xccstring}">
+		   <fileset file="${basedir}/testcases/test-parameters.xqy">
+		   </fileset>
+    		<ml:paramset>
+    			<ml:param name="NAME" ns="" type="string" value="Douglass"/>
+    			<ml:param name="TIMES" ns="" type="integer" value="3"/>
+    		</ml:paramset>
+	    </ml:query>
+	   <echo>Testing Local Query with external parameters</echo>
+		<ml:query xccurl="${xccstring}" query="
+			declare variable $NAME as xs:string external;
+		    declare variable $TIMES as xs:integer external;
+		    for $in in (1 to $TIMES)
+			return $NAME	
+		">
+    		<ml:paramset>
+    			<ml:param name="NAME" ns="" type="string" value="Michael"/>
+    			<ml:param name="TIMES" ns="" type="integer" value="3"/>
+    		</ml:paramset>
+	    </ml:query>
+		
+		<echo>Test Parameters with nested element</echo>
+		<ml:query xccurl="${xccstring}" query="
+			declare variable $ELEMENT as element() external;
+			$ELEMENT/child1	
+		">
+    		<ml:paramset>
+    			<ml:param name="ELEMENT" ns="" type="string" value="hello"/>
+    		</ml:paramset>
+	    </ml:query>
+	</target>
+    <target name="test-xqdoc">
+   		<ml:xqdoc 
+   			outputdir="${basedir}/xqdocs" 
+   			display="${lib.dir}/xqdoc-display.xqy" 
+   			version="ml10"
+   			failonerror="false">
+        		<fileset dir="./pce" includes="**/*.xqy">
+        			<exclude name="**/pce-setup/*.xqy"/>
+        			<exclude name="**/migration/*.xqy"/>
+        			<exclude name="**/test/*.xqy"/>
+        	    </fileset>
+    	</ml:xqdoc>
+	</target>
+	
+	<target name="test-failonerror">
+    	<ml:query xccurl="${xccstring}"
+    		query="xquery version '1.0-ml'; 1xxx" 
+    		output="${basedir}/output.txt"
+    	   failonerror="false">
+    	</ml:query>
+    	<ml:query xccurl="${xccstring}"
+    		query="xquery version '1.0-ml'; 1xxx" 
+    		output="${basedir}/output.txt"
+    	   failonerror="true">
+    	</ml:query>
+	</target>	
+</project>

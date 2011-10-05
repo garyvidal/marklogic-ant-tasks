@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<project name="ml-ant-task" basedir="." default="build">
+
+    <path id="compile.classpath">
+        <fileset dir="lib">
+            <include name="*.jar"/>
+        </fileset>
+    </path>
+    <!-- =================================
+        target: default
+        ================================= -->
+    <target name="build" depends="compile, test-jar"/>
+    
+    <target name="compile">
+        <mkdir dir="./classes"/>
+        <javac srcdir="./src" destdir="./classes" target="1.5">
+            <classpath refid="compile.classpath"/>
+        </javac>
+    </target>
+
+    <target name="make-jar" depends="compile">
+        <copy file="./misc/antlib.xml" todir="./classes/com/marklogic/ant" />
+        <jar  
+            destfile="./releases/mlant.jar"
+            basedir="./classes"
+            manifest="./misc/MANIFEST.MF"
+            >
+            <fileset dir="./misc" includes="MarkLogicAntTask.properties" />
+        </jar>        
+    </target>
+    
+    <target name="test-jar" depends="make-jar">
+        <copy file="./releases/mlant.jar" todir="./lib" />        
+    </target>   
+    <target name="javadocs">
+	   <javadoc 
+	   	packagenames="com.marklogic.ant.taskdefs.*" 
+	   	sourcepath="src" 
+	   	destdir="docs/api" 
+	   	author="false" 
+	   	version="false" 
+	   	use="true" 
+	   	windowtitle="MarkLogic Ant Tasks"/>
+	   
+    </target>
+</project>
+
