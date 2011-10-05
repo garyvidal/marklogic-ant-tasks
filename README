@@ -1,0 +1,21 @@
+#Marklogic ANT Tasks Library
+
+Provides various support for MarkLogic Functionality to use in Build Deployment Scenarios
+
+```xml
+  <ml:load xccurl="${xccstring}">
+            <ml:docset destdir="/test-dir/">
+                <ml:permissionset>
+                    <ml:permission role="nobody" permission="execute" />
+                    <ml:permission role="nobody" permission="insert" />
+                    <ml:permission role="nobody" permission="read" />
+                    <ml:permission role="nobody" permission="update" />
+                </ml:permissionset>
+                <ml:collectionset>
+                    <ml:collection name="collection1" />
+                    <ml:collection name="collection2" />
+                </ml:collectionset>
+                <fileset dir="../src" includes="**/*" />                
+            </ml:docset>
+        </ml:load>
+```
