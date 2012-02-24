@@ -1,0 +1,376 @@
+<domain xmlns="http://www.xquerrail-framework.com/domain"
+    xmlns:security="http://www.xquery/security"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.xquerrail-framework.com/domain file:../../_framework/schema/domain.xsd">
+    <name>application</name>
+    <content-namespace prefix="cndam" namespace-uri="http://www.condenast.com/dam/2.0"/>
+    <application-namespace>http://www.condenast.com/dam/2.0</application-namespace>
+    <description>Conde Nast DAM 2.0</description>
+    <author>Andrew Wanczowski, Gary Vidal</author>
+    <version>1.0</version>
+
+    <declare-namespace prefix="dcterms" namespace-uri="http://purl.org/dc/terms/"/>
+    <declare-namespace prefix="cnp" namespace-uri="reserved path"/>
+    
+    <!--
+    <roles>
+        <role name="cndam-admin" type="admin"/>
+        <role name="cndam-editor" type="editor"/>
+        <role name="cndam-user" type="user"/>
+        <role name="cndam-nobody" type="anonymous"/>
+        <role name="cndam-create" type="create"/>
+        <role name="cndam-read" type="read"/>
+        <role name="cndam-write" type="write"/>
+        <role name="cndam-delete" type="delete"/>
+        <role name="cndam-execute" type="execute"/>
+    </roles>
+    -->
+    
+    <!-- Georgraphic Related Models -->
+    <model name="countryCode" description="Country Code Controlled Vocabulary" persistence="document">
+        <document>/vocabularies/countryCodes.xml</document>
+        <declare-namespace prefix="cndam" namespace-uri="http://www.condenast.com/dam/2.0"/>
+        <element name="id" type="string" identity="true" label="ISO Country Code">
+            <navigation searchable="true" sortable="true" facetable="true"/>
+            <constraint required="true"/>
+        </element>
+        <element name="name" type="string" label="Name">
+            <navigation searchable="true" sortable="true" />
+            <constraint  required="true"/>
+        </element>
+        <element name="iso3" type="integer" label="ISO 3 digit">
+            <navigation searchable="true" sortable="true" />
+            <constraint  required="true"/>
+        </element>
+    </model>
+    <model name="timezone" description="Timezones Configuration" persistence="document">
+        <document>/vocabularies/timezones.xml</document>
+        <declare-namespace prefix="cndam" namespace-uri="http://www.condenast.com/dam/2.0"/>
+        <element name="id" type="string" identity="true" label="ID">
+            <navigation searchable="true" sortable="true" facetable="true" />
+            <constraint required="true"/>
+        </element>
+        <element name="offset" type="decimal" label="GMT Offset">
+            <navigation searchable="true" sortable="true" facetable="true"/>
+            <constraint required="true"/>
+        </element>
+        <element name="name" type="string" label="Name">
+            <navigation searchable="true" sortable="true"/>
+            <constraint  required="true"/>
+        </element>
+    </model>
+    <model name="locale" description="Locales" persistence="document">
+        <document>/vocabularies/locales.xml</document>
+        <declare-namespace prefix="cndam" namespace-uri="http://www.condenast.com/dam/2.0"/>
+        <element name="id" type="string" identity="true" >
+            <navigation searchable="true" sortable="true" facetable="true"/>
+            <constraint required="true"/>
+        </element>
+        <element name="name" type="string">
+            <navigation searchable="true" sortable="true"/>
+            <constraint  required="true"/>
+        </element>
+    </model>
+
+    <!-- Publication Related Models -->
+    <model name="publicationGroup" description="Publication Group" persistence="document">
+        <document>/authorities/publicationGroups.xml</document>
+        <declare-namespace prefix="cndam" namespace-uri="http://www.condenast.com/dam/2.0"/>
+        <element name="id" type="string" identity="true" >
+            <navigation searchable="true" sortable="true" facetable="true"/>
+            <constraint required="true"/>
+        </element>
+        <element name="name" type="string">
+            <navigation searchable="true" sortable="true"/>
+            <constraint  required="true"/>
+        </element>
+    </model>
+    <model name="publication" description="Publication Group" persistence="document">
+        <document>/vocabularies/publications.xml</document>
+        <declare-namespace prefix="cndam" namespace-uri="http://www.condenast.com/dam/2.0"/> 
+        <import-model name="issnCode"/>
+        <element name="publicationId" type="string" identity="true" label="ID">
+            <navigation searchable="true" sortable="true" facetable="true"/>
+            <constraint required="true"/>
+        </element>
+        <element name="publicationName" type="string" label="Publication Name">
+            <navigation searchable="true" sortable="true"/>
+            <constraint required="true"/>
+        </element>
+        <element name="issnNumber" type="string" label="ISSN Number">
+            <navigation searchable="true" sortable="true"/>
+            <constraint required="true"/>
+        </element>
+        <hasMany name="issnCodes" type="issnCode" reference="model:issnCode:reference"/>        
+    </model>
+    <model name="issnCode" description="ISSN Codes" persistence="document">
+        <document>/vocabularies/issnCodes.xml</document>
+        <declare-namespace prefix="cndam" namespace-uri="http://www.condenast.com/dam/2.0"/>
+        <element name="id" type="string" identity="true">
+            <navigation searchable="true" sortable="true" facetable="true"/>
+            <constraint required="true"/>
+        </element>
+        <element name="name" type="string">
+            <navigation searchable="true" sortable="true"/>
+            <constraint required="true"/>
+        </element>
+    </model>
+    
+    <!-- Ingestion Related Models -->
+    <model name="packageType" description="Package Type" persistence="document">
+        <document>/packageTypes/packageTypes.xml</document>
+        <declare-namespace prefix="cndam" namespace-uri="http://www.condenast.com/dam/2.0"/>
+        <import-model name="assetType"/>
+        <element name="id" type="string" identity="true" >
+            <navigation searchable="true" sortable="true" facetable="true"/>
+            <constraint required="true"/>
+        </element>
+        <element name="name" type="string">
+            <navigation searchable="true" sortable="true"/>
+            <constraint  required="true"/>
+        </element>
+       	<hasMany name="assetTypes" type="assetType" reference="model:assetType:reference"/>
+    </model>    
+    <model name="assetType" description="AssetType" persistence="document">
+        <document>/assetTypes/assetTypes.xml</document>
+        <declare-namespace prefix="cndam" namespace-uri="http://www.condenast.com/dam/2.0"/>
+        <element name="id" type="string" identity="true" label="ID" >
+            <navigation searchable="true" sortable="true" facetable="true"/>
+            <constraint required="true"/>
+        </element>
+        <element name="description" type="string" label="Asset Description">
+            <navigation searchable="true" sortable="true"/>
+            <constraint  required="true"/>
+        </element>
+        <element name="namespace-uri" type="string" label="Namespace">
+            <navigation searchable="true" sortable="true"/>
+            <constraint  required="true"/>
+        </element>
+        <element name="element" type="string" label="Root Name">
+            <navigation searchable="true" sortable="true"/>
+            <constraint  required="true"/>
+        </element>
+        <element name="xmlSchemaLocation" type="string" label="Schema Location">
+            <navigation searchable="true" sortable="true"/>
+            <constraint  required="true"/>
+        </element>
+        <element name="isActive" type="boolean" label="Active">
+            <navigation searchable="true" sortable="true"/>
+            <constraint  required="true"/>
+        </element>
+    </model>  
+
+    <!-- Start Validation Models -->
+    <model name="schema" description="Schemas for validating ingested content" persistence="document">
+        <document>/config/validation/schemas.xml</document>
+        <declare-namespace prefix="cndam" namespace-uri="http://www.condenast.com/dam/2.0"/>
+        <element name="id" type="string" identity="true" label="Schema ID">
+            <navigation searchable="true" sortable="true" facetable="true"/>
+            <constraint required="true"/>
+        </element>
+        <element name="name" type="string" label="Name">
+            <navigation searchable="true" sortable="true" />
+            <constraint  required="true"/>
+        </element>
+        <element name="schemaLocation" type="string" label="Schema Location">
+            <navigation searchable="true" sortable="true" />
+            <constraint  required="true"/>
+        </element>
+        <element name="namespace" type="string" label="Schema namespace">
+            <navigation searchable="true" sortable="true" />
+            <constraint  required="true"/>
+        </element>
+        <element name="isPrimary" type="boolean" label="Is Primary Schema">
+            <navigation searchable="true" sortable="true" />
+            <constraint  required="true"/>
+        </element>
+    </model>
+    <model name="schematron" description="Schematron for validating ingested content" persistence="directory">
+        <directory>/schematrons/</directory>
+        <declare-namespace prefix="cndam" namespace-uri="http://www.condenast.com/dam/2.0"/>
+        <element name="id" type="string" identity="true" label="Schematron ID">
+            <navigation searchable="true" sortable="true" facetable="true"/>
+            <constraint required="true"/>
+        </element>
+        <element name="name" type="string" label="Name">
+            <navigation searchable="true" sortable="true" />
+            <constraint required="true"/>
+        </element>
+        <element name="schematronElement" type="schema-element" label="Schematron Element">
+            <constraint  required="true"/>
+        </element>
+    </model>
+    <model name="validationDriver" description="Validation driver that will contain schemas/schematrons" persistence="directory">
+        <directory>/config/validation/drivers/</directory>
+        <declare-namespace prefix="cndam" namespace-uri="http://www.condenast.com/dam/2.0"/>
+        <import-model name="schema"/>
+        <import-model name="schematron"/>
+        <element name="code" type="integer" identity="true" label="Code">
+            <navigation searchable="true" sortable="false" facetable="false" />
+            <constraint required="true" />
+        </element>
+        <element name="name" type="string" label="Name">
+            <navigation searchable="true" facetable="true"></navigation>
+        </element>
+        <element name="description" type="string" label="Description" />
+        <element name="moduleURI" type="string" label="Module URI"/>
+     
+        <hasMany name="schemas" type="schema" reference="model:schema:reference"/>
+        <hasMany name="schematrons" type="schematron" reference="model:schematron:reference"/>
+    </model>
+    <model name="validationTicket" description="Validation ticket will contain the work for a job" persistence="directory">
+        <directory>/tickets/validation/</directory> 
+        <declare-namespace prefix="cndam" namespace-uri="http://www.condenast.com/dam/2.0" />
+        <element name="id" type="integer" identity="true" label="ID">
+            <navigation searchable="true" sortable="false" facetable="false" />
+        </element>        
+        <element name="driverId" type="integer" label="Driver ID">
+            <navigation searchable="true" sortable="false" facetable="false"/>
+        </element>
+        <element name="pkgid" type="integer" label="Package ID">
+            <navigation searchable="true" sortable="true" facetable="true"/>
+        </element>
+        <element name="errorCount" type="integer" label="Total Errors">
+            <navigation searchable="true" sortable="true" facetable="true"/>
+        </element>
+        <element name="warningCount" type="integer" label="Total Warnings">
+            <navigation searchable="true" sortable="true" facetable="true"/>
+        </element>
+        <element name="infoCount" type="integer" label="Total Info">
+            <navigation searchable="true" sortable="true" facetable="true"/>
+        </element>
+        <element name="schemaErrors" type="integer" label="Schema Errors">
+            <navigation searchable="true" sortable="true" facetable="true"/>
+        </element>
+        <element name="schematronErrors" type="integer" label="Schematron Errors">
+            <navigation searchable="true" sortable="true" facetable="true"/>
+        </element>
+        <element name="status" type="string" label="Status">
+            <constraint inList="status-values"></constraint>
+            <navigation searchable="true" sortable="true" facetable="true"/>
+        </element>
+        <element name="filesystemURI" type="string" label="Files System URI">
+            <constraint inList="status-value"></constraint>
+            <navigation searchable="true" sortable="true" facetable="true"/>
+        </element>
+        <element name="report" type="string" label="Report"/>
+        <optionlist type="string" name="status-values" child-element="option">
+            <option>Pass</option>
+            <option>Fail</option>
+         </optionlist>
+    </model> 
+    <!-- 
+    <model name="vocabularyTerm" description="Vocabulary Term">
+        <path>/vocabularyTerms/</path>
+        <declare-namespace prefix="cndam" namespace-uri="http://www.condenast.com/dam/2.0"/>
+        <element name="id" type="string" identity="true" >
+            <navigation searchable="true" sortable="true" facetable="true"/>
+            <constraint required="true"/>
+        </element>
+        <element name="primaryTerm" type="string">
+            <navigation searchable="true" sortable="true"/>
+            <constraint  required="true"/>
+        </element>
+        <element name="alternateTerms" type="string">
+            <navigation searchable="true" sortable="true"/>
+            <constraint  required="true"/>
+        </element>
+    </model>  
+    <model name="taxonomy" description="Taxonomy Elements">
+        <path>/taxonomies/</path>
+        <declare-namespace prefix="dc" namespace-uri="http://purl.org/dc/elements/1.1/"/>
+        <declare-namespace prefix="cndam" namespace-uri="http://www.condenast.com/dam/2.0"/> 
+        <element name="taxonomyID" type="string" identity="true" label="ID" >
+            <navigation searchable="true" sortable="true" facetable="true"/>
+            <constraint required="true"/>
+        </element>
+        <element name="taxonomyName" type="string" label="Preferred Term">
+            <navigation searchable="true" sortable="true"/>
+            <constraint  required="true"/>
+        </element>
+        <element name="description" type="string" label="Description">
+            <navigation searchable="true" sortable="true"/>
+            <constraint  required="true"/>
+        </element>
+        <element name="taxonomyType" type="string" label="Type">
+            <navigation searchable="true" sortable="true"/>
+            <constraint  required="true"/>            
+        </element>
+        <element name="matchingRule" type="string" label="Matching Rule">
+            <navigation searchable="true" sortable="true"/>
+            <constraint required="false" />   
+        </element>
+        <child model="taxonomy" recursive="true"/>
+    </model>  
+    <model name="user" description="User">
+        <path>/users/</path>
+        <declare-namespace prefix="cndam" namespace-uri="http://www.condenast.com/dam/2.0"/> 
+        <element name="userId" type="string" identity="true" >
+            <navigation searchable="true" sortable="true" facetable="true"/>
+            <constraint required="true"/>
+        </element>
+        <element name="userName" type="string">
+            <navigation searchable="true" sortable="true"/>
+            <constraint  required="true"/>
+        </element>
+        <element name="fullName" type="string">
+            <navigation searchable="true" sortable="true"/>
+            <constraint  required="true"/>
+        </element>        
+        <element name="emailAddress" type="string">
+            <navigation searchable="true" sortable="true"/>
+            <constraint  required="true"/>
+        </element>
+    </model>  
+    <model name="role" description="Roles">
+        <path>/roles/</path>
+        <import-model name="user"/>
+        <declare-namespace prefix="cndam" namespace-uri="http://www.condenast.com/dam/2.0"/> 
+        <element name="roleId" type="string" identity="true" label="Role ID" >
+            <navigation searchable="true" sortable="true" facetable="true"/>
+            <constraint required="true"/>
+        </element>
+        <element name="roleName" type="string" label="Role Name">
+            <navigation searchable="true" sortable="true"/>
+            <constraint  required="true"/>
+        </element>
+        <element name="roleDescription" type="string" label="Role Description">
+            <navigation searchable="true" sortable="true"/>
+            <constraint  required="true"/>
+        </element>   
+        <element name="roleType" type="string" label="Role Type">
+            <navigation searchable="true" sortable="true"/>
+            <constraint  required="true"/>            
+        </element>
+        <hasMany name="users" type="user" reference="model:user:reference"/>
+    </model>     
+    -->
+    
+    <!-- Geographic Related Controllers -->    
+    <controller name="countryCodes" model="countryCode" label="Country Codes"/>
+    <controller name="timezones" model="timezone" label="Time Zones"/>
+    <controller name="locales" model="locale" label="Locales"/>
+    
+    <!-- Publication Related Controllers -->    
+    <controller name="publicationGroups" model="publicationGroup" label="Publication Groups"/>
+    <controller name="publications" model="publication" label="Publications"/>
+    <controller name="issnCodes" model="issnCode" label="ISSN Codes"/>
+    
+    <!-- Ingeston Related Controllers -->    
+    <controller name="packageTypes" model="packageType" label="Package Types"/>
+    <controller name="assetTypes" model="assetType" label="Asset Types"/>
+    
+    <!-- Validation Related Controllers -->    
+    <controller name="schemas" model="schema" label="Schemas"/>
+    <controller name="schematrons" model="schematron" label="Schematrons"/>
+
+    <controller name="validationDrivers" model="validationDriver" label="Validation Driver"/>
+    <controller name="validationTickets" model="validationTicket" label="Validation Ticket"/>
+    
+<!--
+    <controller name="vocabularyTerms" model="vocabularyTerm" label="Vocabulary Terms"/>
+    <controller name="taxonomies" model="taxonomy" label="Taxonomies"/>
+    <controller name="users" model="user" label="Users"/>
+    <controller name="roles" model="role" label="Roles"/>
+-->    
+</domain>

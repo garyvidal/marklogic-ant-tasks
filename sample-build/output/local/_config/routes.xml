@@ -1,0 +1,54 @@
+<routes xmlns="http://www.xquerrail-framework.com/routing">
+   <route id="_resources" pattern="^/resources/*" is-resource="true">
+      <prepend></prepend>
+   </route>
+   <route id="_default" pattern="^/$">
+      <default key="_controller">application:default:index:html</default>
+   </route>
+   <route id="_default" pattern="^/staging/?$">
+      <default key="_controller">application:default:staging:html</default>
+   </route>
+   
+   <route id="_admin" pattern="^/admin/?$">
+      <default key="_controller">application:default:admin:html</default>
+   </route>   
+   <route id="_listxml" pattern="^/(\i\c*)/list.xml$">
+      <default key="_controller">application:$1:list:xml</default>
+   </route>  
+   <route id="_createxml" pattern="^/(\i\c*)/create$">
+      <default key="_controller">application:$1:create:xml</default>
+   </route>     
+   <route id="_getxml" pattern="^/(\i\c*[^/])/get$">
+      <default key="_controller">application:$1:get:xml</default>
+   </route>    
+   <route id="_show" pattern="^/(\i\c*)/show/(\c*)$">
+      <default key="_controller">application:$1:show:xml</default>
+      <param key="id">$2</param>
+   </route>
+   <route id="_edit" pattern="^/(\i\c*)/edit/(\c*)$">
+      <default key="_controller">application:$1:edit:xml</default>
+      <param key="id">$2</param>
+   </route>
+   <!--Default Routes-->
+   <route id="default_index" pattern="^/(\i\c*)/?$">
+      <default key="_controller">application:$1:index:$3</default>      
+   </route>
+   <route id="default_index" pattern="^/(\i\c*)/(\i\c*).(json|html)$">
+      <default key="_controller">application:$1:$2:$3</default>      
+   </route>   
+   <route id="_default_get" pattern="^/(.*[^/])/(\i\c*[^/])\.(json|html)$" method="get">
+      <default key="_controller">application:$1:get:$3</default>
+   </route>
+   
+   <route id="_default_update" pattern="^/(.*[^/])/(\i\c*[^/])\.(json|html)$" method="post">
+      <default key="_controller">application:$1:update:$3</default>
+   </route>   
+   
+   <route id="_default_delete" pattern="^/(\i\c*)/(\i\c*[^/])\.(json|html)$" method="delete">
+      <default key="_controller">application:$1:delete:$3</default>
+   </route> 
+   
+   <route id="_default_create" pattern="^/(.*[^/])/(\i\c*[^/])\.(json|html)$" method="put">
+      <default key="_controller">application:$1:create:$3</default>
+   </route> 
+</routes>

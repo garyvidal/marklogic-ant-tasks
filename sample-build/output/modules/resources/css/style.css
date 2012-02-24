@@ -1,0 +1,312 @@
+body
+{
+  background:url(../img/header-bg.png) repeat-x #181818 0 35px;
+  margin:20px 0;
+  padding:0;
+  font-family:Arial, Sans-Serif;
+  font-size:12px;
+  line-height:120%;
+  color:#fff;
+}
+
+h1,h2,h3,h4,h5,h6,#tools ul
+{
+  margin:0;
+  padding:0;
+}
+
+h2
+{
+  margin:5px;
+  padding:5px;
+  border-bottom:solid 1px #555;
+}
+
+a
+{
+  color:#fff;
+}
+
+#pagewrapper
+{
+  width:95%;
+  min-width:1000px;
+  margin:auto;
+  position:relative;
+}
+
+#main
+{
+  clear:both;
+  background:#F2F2F2;
+  color:#000;
+  margin:55px 0 0;
+  padding:5px;
+}
+
+#left
+{
+  width:60%;
+  float:left;
+}
+
+#right
+{
+  width:39%;
+  float:right;
+}
+
+.clearit
+{
+  clear:both;
+}
+
+#headLevel1
+{
+  margin:10px;
+}
+
+#headLevel1 h2
+{
+  font-size:110%;
+  margin:2px;
+  padding:0;
+  border:none;
+  font-weight:400;
+  text-align:center;
+  width:235px;
+}
+
+#tools li
+{
+  list-style:none;
+  display:inline;
+  margin:0;
+  padding:5px;
+}
+
+#tools
+{
+  position:absolute;
+  top:0;
+  right:0;
+}
+
+#quicksearch
+{
+  float:right;
+  margin:10px 0;
+}
+
+#quicksearch input
+{
+  border:0;
+}
+
+#container
+{
+  height:100%;
+  width:100%;
+  min-height:560px;
+  margin:0 auto;
+}
+
+.pane
+{
+  display:none;
+}
+
+.panel
+{
+  background:#fff;
+  border:1px solid #ccc;
+  padding:4px;
+  margin:4px;
+}
+
+.panel h3
+{
+  background:url(../img/h3-bg.png) repeat-x #181818;
+  background-size:50%;
+  padding:5px;
+  color:#fff;
+  cursor:pointer;
+}
+
+.editPanel li
+{
+  list-style:none;
+  margin:5px 0;
+}
+
+.editPanel label
+{
+  padding:4px;
+  width:125px;
+  text-align:right;
+  display:inline-block;
+}
+
+ul#navigation
+{
+  margin:0;
+  padding:0;
+}
+
+#navigation
+{
+  height:39px;
+  line-height:39px;
+  position:relative;
+  z-index:9999;
+}
+
+#navigation,#navigation li
+{
+  float:left;
+  list-style:none;
+}
+
+#navigation li
+{
+  height:39px;
+  border-right:#666 solid 1px;
+  border-left:#3b3b3b solid 1px;
+  position:relative;
+}
+
+#navigation li a
+{
+  display:block;
+  height:39px;
+  line-height:39px;
+  padding:0 8px;
+  float:left;
+  color:#bdbdbd;
+  font-weight:700;
+  text-shadow:#2f2f2f 1px 1px 0;
+}
+
+#navigation li a.sf-with-ul
+{
+  padding:0 20px 0 8px;
+}
+
+#navigation li ul
+{
+  left:-1px;
+  top:39px;
+  padding:5px;
+  position:absolute;
+  width:185px;
+  z-index:999;
+  -moz-border-radius-bottomleft:13px;
+  -webkit-border-radius-bottomleft:13px;
+  -moz-border-radius-bottomright:13px;
+  -webkit-border-radius-bottomright:13px;
+  box-shadow:0 0 10px #000;
+  -o-box-shadow:0 0 10px #000;
+  -moz-box-shadow:0 0 10px #000;
+  -webkit-box-shadow:0 0 10px #000;
+  background:#fff;
+  display:none;
+  border:#5d5d5d solid 1px;
+}
+
+#navigation li ul li
+{
+  float:none;
+  position:relative;
+  z-index:999;
+  height:30px;
+  line-height:30px;
+  background:#F0F0F0;
+  border-bottom:1px dotted #ccc;
+  border-left:0;
+  border-right:0;
+}
+
+#navigation li ul li a
+{
+  height:30px;
+  line-height:30px;
+  color:#5a5a5a!important;
+  text-shadow:#fff 1px 1px 0;
+  float:none;
+}
+
+#navigation li ul li ul
+{
+  left:190px;
+  top:0;
+  -moz-border-radius-bottomleft:13px;
+  -webkit-border-radius-bottomleft:13px;
+  -moz-border-radius-topright:13px;
+  -webkit-border-radius-topright:13px;
+}
+
+#navigation .ui-icon
+{
+  position:absolute;
+  top:50%;
+  right:3px;
+  margin-top:-8px;
+}
+
+#navigation ul li.sfHover
+{
+  margin-bottom:-3px;
+}
+
+#navigation li.sfHover,#navigation li.sfHover
+{
+  background:#4f4f4f;
+}
+
+#navigation li.sfHover a,#navigation li.sfHover a
+{
+  color:#ededed;
+}
+
+#navigation li ul li a:hover
+{
+  background:#F7F7F7;
+  color:#333;
+}
+
+#navigation li ul li.sfHover,#navigation li ul li.sfHover
+{
+  background:#F7F7F7;
+}
+
+#navigation li ul li.sfHover a
+{
+  color:#333;
+}
+
+.tools
+{
+  float:right;
+}
+
+ul#icons
+{
+  margin:0;
+  padding:0;
+}
+
+ul#icons li
+{
+  margin:2px;
+  position:relative;
+  padding:4px 0;
+  cursor:pointer;
+  float:left;
+  list-style:none;
+}
+
+ul#icons span.ui-icon
+{
+  float:left;
+  margin:0 4px;
+} 

@@ -1,0 +1,189 @@
+<configuration>
+  <http-servers xsi:schemaLocation="http://marklogic.com/xdmp/group group.xsd"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://marklogic.com/xdmp/group">
+    <http-server>
+      <http-server-name>%app-name%</http-server-name>
+      <root>/</root>
+      <port>9000</port>
+      <database name="%app-name%"/>
+      <authentication>application-level</authentication>
+      <default-user name="admin"/>
+      <compute-content-length>false</compute-content-length>
+      <url-rewriter>/rewriter.xqy</url-rewriter>
+    </http-server>
+  </http-servers>
+  <xdbc-servers xsi:schemaLocation="http://marklogic.com/xdmp/group group.xsd"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://marklogic.com/xdmp/group">
+    <xdbc-server>
+      <xdbc-server-name>%app-name%-http</xdbc-server-name>
+      <root>/%app-name%/modules</root>
+      <port>9001</port>
+      <database name="%app-name%"/>
+      <authentication>basic</authentication>
+    </xdbc-server>
+    <xdbc-server>
+      <xdbc-server-name>9015-%app-name%-xdbc</xdbc-server-name>
+      <port>9002</port>
+      <database name="%app-name%"/>
+    </xdbc-server>
+  </xdbc-servers>
+  <assignments xsi:schemaLocation="http://marklogic.com/xdmp/assignments assignments.xsd"
+    xmlns="http://marklogic.com/xdmp/assignments"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <assignment>
+      <forest-name>%app-name%-forest</forest-name>
+    </assignment>
+  </assignments>
+  <databases xsi:schemaLocation="http://marklogic.com/xdmp/database database.xsd"
+    xmlns="http://marklogic.com/xdmp/database" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <database>
+      <database-name>%app-name%</database-name>
+      <forests>
+        <forest-id name="%app-name%"/>
+      </forests>
+      <uri-lexicon>true</uri-lexicon>
+      <collection-lexicon>true</collection-lexicon>
+      <range-element-indexes>
+        <range-element-index>
+          <scalar-type>dateTime</scalar-type>
+          <namespace-uri>http://marklogic.com/xdmp/dls</namespace-uri>
+          <localname>created replaced</localname>
+          <range-value-positions>false</range-value-positions>
+        </range-element-index>
+        <range-element-index>
+          <scalar-type>unsignedLong</scalar-type>
+          <namespace-uri>http://marklogic.com/xdmp/dls</namespace-uri>
+          <localname>version-id</localname>
+          <range-value-positions>false</range-value-positions>
+        </range-element-index>
+      </range-element-indexes>
+      <range-element-attribute-indexes>
+      <!--Add Any of your own custom Element Attribute Indexes-->
+      </range-element-attribute-indexes>
+    </database>
+  </databases>
+  <users xmlns="http://marklogic.com/xdmp/security">
+    <user>
+      <user-name>%app-name%-content-loader</user-name>
+      <description>%app-name% Content Loader</description>
+      <password-extra/>
+      <collections/>
+      <password/>
+      <role-names>
+        <role-name>%app-name%-user</role-name>
+      </role-names>
+      <permissions>
+        <permission>
+          <capability>execute</capability>
+          <role-name>%app-name%-user</role-name>
+        </permission>
+        <permission>
+          <capability>update</capability>
+          <role-name>%app-name%-user</role-name>
+        </permission>
+        <permission>
+          <capability>insert</capability>
+          <role-name>%app-name%-user</role-name>
+        </permission>
+        <permission>
+          <capability>read</capability>
+          <role-name>%app-name%-user</role-name>
+        </permission>
+        <permission>
+          <capability>read</capability>
+          <role-name>%app-name%-admin</role-name>
+        </permission>
+        <permission>
+          <capability>insert</capability>
+          <role-name>%app-name%-admin</role-name>
+        </permission>
+        <permission>
+          <capability>update</capability>
+          <role-name>%app-name%-admin</role-name>
+        </permission>
+        <permission>
+          <capability>execute</capability>
+          <role-name>%app-name%-admin</role-name>
+        </permission>
+        <permission>
+          <capability>read</capability>
+          <role-name>%app-name%-editor</role-name>
+        </permission>
+        <permission>
+          <capability>insert</capability>
+          <role-name>%app-name%-editor</role-name>
+        </permission>
+        <permission>
+          <capability>update</capability>
+          <role-name>%app-name%-editor</role-name>
+        </permission>
+        <permission>
+          <capability>execute</capability>
+          <role-name>%app-name%-editor</role-name>
+        </permission>
+      </permissions>
+    </user>
+    <user>
+      <user-name>%app-name%-module-deployer</user-name>
+      <description>%app-name% Deployer Role - Deploys code modules</description>
+      <password-extra/>
+      <collections/>
+      <password/>
+      <role-names>
+        <role-name>%app-name%-modules</role-name>
+      </role-names>
+      <permissions>
+        <permission>
+          <capability>execute</capability>
+          <role-name>%app-name%-modules</role-name>
+        </permission>
+        <permission>
+          <capability>insert</capability>
+          <role-name>%app-name%-modules</role-name>
+        </permission>
+        <permission>
+          <capability>read</capability>
+          <role-name>%app-name%-modules</role-name>
+        </permission>
+        <permission>
+          <capability>update</capability>
+          <role-name>%app-name%-modules</role-name>
+        </permission>
+      </permissions>
+    </user>
+  </users>
+  <roles xmlns="http://marklogic.com/xdmp/security">   
+    <role>
+      <role-name>%app-name%-admin</role-name>
+      <description>%app-name% application admin</description>
+      <collections/>
+      <role-names/>
+      <permissions/>
+      <privileges/>
+    </role>
+    <role>
+      <role-name>%app-name%-modules</role-name>
+      <description>%app-name% application admin</description>
+      <collections/>
+      <role-names/>
+      <permissions/>
+      <privileges/>
+    </role>
+    <role>
+      <role-name>%app-name%-editor</role-name>
+      <description>%app-name% application editor</description>
+      <collections/>
+      <role-names/>
+      <permissions/>
+      <privileges/>
+    </role>
+    <role>
+      <role-name>%app-name%-user</role-name>
+      <description>%app-name% application user</description>
+      <collections/>
+      <role-names/>
+      <permissions/>
+      <privileges/>
+    </role>
+  </roles>
+</configuration>

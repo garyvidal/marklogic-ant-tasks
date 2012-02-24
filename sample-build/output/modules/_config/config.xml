@@ -1,0 +1,16 @@
+<config xmlns="http://www.xquerrail-framework.com/config">
+    <routes resource="/_config/routes.xml"/>
+    <front-controller resource="/_framework/controllers/controller.web.xqy"/>
+    <controller-suffix value="-controller"/>
+    <controller-scripts-directory value="/resources/scripts/"/>
+    <model-suffix value="-model"/>
+    
+    <!--Register Default Values for engine-->
+    <default-engine value="engine.html"/>
+    <default-format value="html"/>
+    <default-application value="application"/>
+    
+    <!--Register Your Application Here-->
+    <application name="application" namespace="http://www.condenast.com/dam/2.0" uri="/application"/>
+    <!--Plugins-->
+</config>
