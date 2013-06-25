@@ -18,7 +18,7 @@ import com.marklogic.xcc.ContentFactory;
 import com.marklogic.xcc.ContentPermission;
 import com.marklogic.xcc.ContentSource;
 import com.marklogic.xcc.ContentSourceFactory;
-
+import com.marklogic.xcc.exceptions.XccConfigException;
 
 //XCC Imports
 import com.marklogic.xcc.Session;
@@ -29,7 +29,7 @@ public class Load extends Task {
 	private DocSet dSet = null;
 	private boolean failOnError = true;
 	private String contentType = "";
-	
+	private boolean  bulkLoad = false;
 	public void setFailOnError(boolean failOnError )
 	{
 		this.failOnError = failOnError;
@@ -49,6 +49,9 @@ public class Load extends Task {
 	public void setContenttype(String contentType)
 	{
 		this.contentType = contentType;
+	}
+	public void setBulkLoad(boolean bulkLoad) {
+	   this.bulkLoad = bulkLoad;
 	}
 	public void addConfiguredDocset(DocSet dSet) {
 		// TODO add support for multiple DocSets.
@@ -84,15 +87,18 @@ public class Load extends Task {
 				}
 			}
 		}
-		
-		load();
+		if(this.bulkLoad) {
+		  loadBulk();
+		} else {
+		  load();
+		}
 	}
 	
 	/**
 	 * Private Helper Function that actually performs the load.
-	 * 
+	 * If configured to bulk = true;  
 	 */
-	private void load() throws BuildException {
+	private void loadBulk() throws BuildException {
 		
 		//Set Content Creation Options. 
 		ContentCreateOptions opts = new ContentCreateOptions();
@@ -166,5 +172,72 @@ public class Load extends Task {
 			}
 		}
 	}
+   private void load() throws BuildException {
+		
+		//Set Content Creation Options. 
+		ContentCreateOptions opts = new ContentCreateOptions();
+		if( dSet.getPerms() != null )
+			opts.setPermissions(dSet.getPerms().getPermissions());
+		if( dSet.getCols() != null )
+			opts.setCollections(dSet.getCols().getCollections());
+		
+		//GV:2010-12-20 Added to support ContentType
+		if(contentType.equals("xml")) {
+			opts.setFormatXml();
+		}
+		else if(contentType.equals("binary")) {
+			opts.setFormatBinary();
+		}
+		else if(contentType.equals("text")){
+			opts.setFormatText();
+		}
+		log("ContentType: " + contentType, Project.MSG_INFO);
+		
+		//We'll need a Directory Scanner to get the filenames.
+		DirectoryScanner ds = null;
+		//Create a vector for the files.
 	
+		//Now add all the files, in all the FileSets to a Vector so we can get going.
+		try {
+		    ContentSource cs = ContentSourceFactory.newContentSource(xccURL);
+		    Session session = cs.newSession();	
+			for( FileSet fs : dSet.getFileSets() ) {
+			    Content content = null;
+				ds = fs.getDirectoryScanner(getProject());
+				File baseDir = ds.getBasedir();
+				log("FS Basedir: " + baseDir, Project.MSG_DEBUG);
+				for( String fileName : ds.getIncludedFiles() ) {
+					File f = new File(baseDir, fileName);
+					String path  = f.getCanonicalPath();
+					path = dSet.getDestdir() + fileName;
+					path = path.replace(File.separatorChar, '/');
+					
+				    content = ContentFactory.newContent(path, f, opts);
+					try {
+					    log("Loading File: " + path,Project.MSG_INFO);
+                		session.insertContent(content);
+                	} catch (Exception e) {
+                		String msg = "Error Loading Content!\n" + e.getMessage();
+                		log(msg, Project.MSG_ERR);
+                		if(failOnError){
+                			throw(new BuildException(msg));
+                		}
+                	}
+				}
+			}
+		} catch (IOException ioError) {
+			String msg = "IO Error Prevented File from being loaded.\n" + ioError.getMessage();
+			log(msg, Project.MSG_ERR);
+			if(failOnError){
+				throw(new BuildException(msg));
+			}
+		}
+		catch(XccConfigException ex) {
+		  String msg = "Configuration Exception" + ex.getMessage();
+			log(msg, Project.MSG_ERR);
+			if(failOnError){
+				throw(new BuildException(msg));
+			}
+		}
+	}
 }
