@@ -72,6 +72,8 @@ The following is a basic project that defines the required information for ant t
 ======
 Description:
 Load content from filesystem into MarkLogic database. 
+Note the default behavior is to load each file as a single transaction. To load all files as a single transaction use the 
+bulkLoad=true parameter.
 
 ####Attribute Parameters
 <table>
@@ -87,6 +89,7 @@ Load content from filesystem into MarkLogic database.
   <tr><th>Element Name</th><th>Description</th><th>Required</th></tr>
   <tr><td>docset</td><td>Defines the uri where the content will be loaded and additional permissions, collections and fileset residing on local filesystem.</td><td>Yes</td></tr>
   <tr><td>failonerror</td><td>Determines wether an exception will cause task to fail</td><td>No</td></tr>
+  <tr><td>bulkload</td><td>Determines if the load task is done in a single transaction or multiple transactions.  The default is false</td></tr>
 </table>
 Example (Complete):
 Loads a document into /test-dir/ from ../src directory using fileset vector.  Additionally a set of permissions and collections are assigned to documents loaded.
